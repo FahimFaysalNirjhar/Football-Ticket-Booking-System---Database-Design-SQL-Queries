@@ -14,16 +14,16 @@ DROP TABLE IF EXISTS Users;
 -- 1. CREATE USERS TABLE
 -- =========================================================================
 CREATE TABLE Users (
-    user_id TYPE,
-    full_name TYPE,
-    email TYPE,
-    role TYPE,
-    phone_number TYPE,
+    user_id serial primary key,
+    full_name varchar(100) not null,
+    email varchar(100) unique,
+    role varchar(20) not null check (role in('Ticket Manager','Football Fan')),
+    phone_number varchar(15));
     
     -- Write your constraint to make 'user_id' the Primary Key
     -- Write your constraint to ensure 'email' values are never duplicated
     -- Write your check constraint to restrict 'role' to specific allowed strings
-);
+
 
 -- =========================================================================
 -- 2. CREATE MATCHES TABLE
