@@ -35,7 +35,7 @@ CREATE TABLE Matches (
     base_ticket_price int not null check (base_ticket_price>=0) ,
     match_status varchar(50) not null check (match_status in ('Available','Selling Fast','Sold Out','Postponed'))
   );
-    
+     
     -- Write your constraint to make 'match_id' the Primary Key
     -- Write your check constraint to prevent negative ticket prices
     -- Write your check constraint to restrict 'match_status' values
@@ -45,19 +45,19 @@ CREATE TABLE Matches (
 -- 3. CREATE BOOKINGS TABLE
 -- =========================================================================
 CREATE TABLE Bookings (
-    booking_id TYPE,
-    user_id TYPE,
-    match_id TYPE,
-    seat_number TYPE,
-    payment_status TYPE,
-    total_cost TYPE,
+    booking_id serial primary key,
+    user_id int references Users(user_id),
+    match_id int references Matches(match_id),
+    seat_number varchar(10),
+    payment_status varchar(20) check  (payment_status in('Pending','Confirmed','Cancelled','Refunded')),
+    total_cost int check (total_cost>=0));
     
     -- Write your constraint to make 'booking_id' the Primary Key
     -- Write your Foreign Key constraint linking 'user_id' to the Users table
     -- Write your Foreign Key constraint linking 'match_id' to the Matches table
     -- Write your check constraint to ensure 'total_cost' is non-negative
     -- Write your check constraint to restrict 'payment_status' values
-);
+
 
 
 -- =========================================================================
