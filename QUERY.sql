@@ -109,3 +109,9 @@ select booking_id, u.full_name, m.fixture, total_cost from bookings as b inner j
 
 
 select user_id, u.full_name, booking_id from bookings as b full join users as u using(user_id)
+
+-- Query 6: Find all ticket bookings where the total cost is strictly higher than the average cost of all ticket bookings.
+
+
+select booking_id, match_id, total_cost from bookings where total_cost > (select avg(total_cost) from bookings)
+
