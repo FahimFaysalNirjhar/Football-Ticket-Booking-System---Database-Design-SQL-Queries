@@ -100,3 +100,7 @@ select user_id, full_name, email from users where full_name ilike 'Tanvir%' or f
 -- Query 3: Retrieve all booking records where the payment status is missing (NULL),replacing the empty result with 'Action Required'.
 
 select booking_id, user_id, match_id , coalesce(payment_status, 'Action Required') as systematic_status from bookings where payment_status is null
+
+-- Query 4: Retrieve match booking details along with the User's full name and the scheduled Match fixture teams.
+
+select booking_id, u.full_name, m.fixture, total_cost from bookings as b inner join matches as m using(match_id) inner join users as u using(user_id)
