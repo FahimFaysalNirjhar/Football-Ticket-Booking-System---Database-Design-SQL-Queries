@@ -115,3 +115,7 @@ select user_id, u.full_name, booking_id from bookings as b full join users as u 
 
 select booking_id, match_id, total_cost from bookings where total_cost > (select avg(total_cost) from bookings)
 
+-- Query 5: Display a comprehensive list of all users and their booking IDs, ensuring that fans who have never bought a ticket are still listed.
+
+
+select user_id, u.full_name, booking_id from bookings as b full join users as u using(user_id)
